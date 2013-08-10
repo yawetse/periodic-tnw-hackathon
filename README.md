@@ -1,4 +1,3 @@
-periodic
-========
+# Periodic
 
-flatironjs based social feed aggregator
+The best project ever.

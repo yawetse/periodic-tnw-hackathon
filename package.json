@@ -1,0 +1,37 @@
+{
+  "name": "periodic",
+  "description": "The best project ever.",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "engines": {
+    "node": "0.10.13"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "grunt-contrib-less": "~0.7.0"
+  },
+  "devDependencies": {
+    "grunt": "0.4.0",
+    "grunt-contrib-jshint": "0.2.0",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-simple-mocha": "0.3.2",
+    "grunt-jsbeautifier": "0.1.6",
+    "mocha": "1.8.1",
+    "should": "1.2.2",
+    "express": "3.3.4",
+    "ejs": "*",
+    "less-middleware": "*"
+  },
+  "keywords": [
+    "CMS",
+    "CDS",
+    "Content Delivery System",
+    "Content Management System",
+    "AmEx"
+  ]
+}
