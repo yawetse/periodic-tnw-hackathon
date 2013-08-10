@@ -21,3 +21,4 @@ write tests before you write code, using mocha: http://visionmedia.github.io/moc
 ### Less
 
 ### package.json
+added mongoose - mongo orm
