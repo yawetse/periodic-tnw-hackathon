@@ -25,3 +25,22 @@ added mongoose - mongo orm
 
 ### install express with options
     $ express --session --css less --ejs #installed express app with session support, less css support and ejs html templating 
+
+## Application Configuration
+It's a mvc-like web application
+* config - application configuration settings and environment settings
+ * environment - environment specific configuration settings 
+ * db.js - mongoose/orm model set up information
+ * logger.js - application logging configuration
+ * routes.js - application router
+ * environment.js - environment set up
+* controller - application controllers
+* model - application models
+* public - static assets
+* test - mocha/bdd tests
+* views - application views
+* .gitignore - git ignore files
+* .jshintrc - jshint / linting configuration
+* .npmignore - npm ignore files
+* app.js - application
+* package.json - npm configuration
