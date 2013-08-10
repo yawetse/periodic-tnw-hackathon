@@ -24,4 +24,4 @@ write tests before you write code, using mocha: http://visionmedia.github.io/moc
 added mongoose - mongo orm
 
 ### install express with options
-  $ express --session --css less --ejs #installed express app with session support, less css support and ejs html templating 
+    $ express --session --css less --ejs #installed express app with session support, less css support and ejs html templating 
