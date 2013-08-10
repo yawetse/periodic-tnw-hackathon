@@ -11,6 +11,7 @@ It essentially creates the shell of the node application, by setting up the test
 * mocha
 * grunt
 * less
+* nodemon // used for development only
 
 ### Writing good code: JSHint, Linting javascript
 you code should pass linting before commiting, you can do this through your IDE (i'm using sublime text, installed through the package manager) check out (https://github.com/victorporof/Sublime-JSHint) I installed with the sublime text package manager, you can also set up grunt to lint on save (a grunt watcher but I didn't go through this).
@@ -44,3 +45,8 @@ It's a mvc-like web application
 * .npmignore - npm ignore files
 * app.js - application
 * package.json - npm configuration
+
+### Application runtime
+in development mode, it's easier to work with nodemon (to automatically restart server on changes)
+
+Also, to update your host file, to allow for accessing the application on port 80 (not necessary but I like testing oauth connections without the port number)
