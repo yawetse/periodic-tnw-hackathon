@@ -41,10 +41,8 @@ var express_session_config,
 	store: new MongoStore(
 		{url:appconfig.environment.database.url},
 		function(err){
-			if(err){
-				logger.error(err || 'connect-mongodb setup ok possibly');
-			}
-			else{
+			if(!err){
+				// logger.error(err || 'connect-mongodb setup ok possibly');
 				logger.silly('connect-mongodb setup ok possibly');
 			}
 		})

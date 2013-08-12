@@ -6,8 +6,8 @@ var winston = require('winston'),
 	winston.loggers.add('category1', appconfig.environment.logger.apploggerconfig);
 	var logger = winston.loggers.get('category1');
 
-if(appconfig.environment.name=="development" || appconfig.environment.name=="test"){
-	// logger.enabled = true;
+if(appconfig.environment.name==='development' || appconfig.environment.name==='test'){
+	logger.enabled = true;
 }
 else{
 	// logger.enabled = false;
