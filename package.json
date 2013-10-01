@@ -15,7 +15,8 @@
     "grunt-contrib-less": "~0.7.0",
     "winston": "~0.7.2",
     "connect-mongo": "~0.3.3",
-    "connect-flash": "~0.1.1"
+    "connect-flash": "~0.1.1",
+    "mongoose": "~3.6.20"
   },
   "devDependencies": {
     "grunt": "0.4.0",
