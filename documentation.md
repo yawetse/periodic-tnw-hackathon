@@ -50,3 +50,8 @@ It's a mvc-like web application
 in development mode, it's easier to work with nodemon (to automatically restart server on changes)
 
 Also, to update your host file, to allow for accessing the application on port 80 (not necessary but I like testing oauth connections without the port number)
+
+# Troubleshooting
+
+* make sure you create a log directory
+* make sure you start with nodemon in development mode
