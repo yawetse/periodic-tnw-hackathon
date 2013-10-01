@@ -1,8 +1,11 @@
 'use strict';
 
-var logger = require('../config/logger'),
+var mongoose = require('mongoose'),
+	db = require('../config/db'),
+	logger = require('../config/logger'),
 	application_controller = require('./application'),
-	appconfig = require('../config/environment');
+	appconfig = require('../config/environment'),
+	ContentSource = mongoose.model('contentSource');
 
 
 exports.create = function(req, res){
@@ -17,4 +20,20 @@ exports.create = function(req, res){
 		page: {name:'home'},
 		user: req.user
 	});
+};
+
+exports.new = function(req, res, next) {
+	var options;
+		options.Model = ContentSource;
+		options.req = req; 
+		options.res = res;
+		options.next = next,
+		options.logger = logger;
+		options.newdoc = application_controller.remove_empty_object_values(req.body);
+		options.modelname = "contentSource";
+		// options.errorredirect = errorredirect;
+		// options.callback = callback;
+		// options.onlyCallback = onlyCallback;
+
+	application_controller.createModel(options);
 };

@@ -6,21 +6,31 @@ var logger = require('../config/logger'),
   Schema = mongoose.Schema,
   ObjectId = Schema.ObjectId;
 
-var contentSourceSchema = new Schema({
+var contentDocumentSchema = new Schema({
   id: ObjectId,
-  title: String,
-  name: String,
-  description: String,
-  image: String,
-  resource_url: String, //exercise, workout
   content_source_format:{
     type: String,
     default:'rss'
   },
-  content_source_data: Schema.Types.Mixed,
+  title: String,
+  name: String,
+  content: String,
+  media_content: String,
+  media_content_type: String,
+  document_original_uri: String,
+  original_data:  Schema.Types.Mixed,
+  original_id: String,
+  original_date: String,
   user_id: {
     type:  ObjectId,
     ref: 'User',
+    index: {
+      sparse: true
+    }
+  },
+  content_source: {
+    type:  ObjectId,
+    ref: 'ContentSource',
     index: {
       sparse: true
     }
@@ -31,26 +41,26 @@ var contentSourceSchema = new Schema({
   }
 });
 
-contentSourceSchema.post('init', function (doc) {
+contentDocumentSchema.post('init', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been initialized from the db');
 });
-contentSourceSchema.post('validate', function (doc) {
+contentDocumentSchema.post('validate', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been validated (but not saved yet)');
 });
-contentSourceSchema.post('save', function (doc) {
+contentDocumentSchema.post('save', function (doc) {
   logger.verbose(__filename + ' - '+doc.type+' - '+doc._id+' has been saved');
 });
-contentSourceSchema.post('remove', function (doc) {
+contentDocumentSchema.post('remove', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been removed');
 });
 
-contentSourceSchema.statics.removeContentSource = function(options, callback) {
+contentDocumentSchema.statics.removeContentDocument = function(options, callback) {
   var userid=options.userid,
   model=options.model,
   dataid=options.dataid,
   configOptions= {};
 
-  configOptions.model = mongoose.model('contentSource');
+  configOptions.model = mongoose.model('contentDocument');
   configOptions.query = {userid:userid,model:model,dataid:dataid};
   configOptions.queryOptions = false;
 
@@ -59,21 +69,20 @@ contentSourceSchema.statics.removeContentSource = function(options, callback) {
   queryHelper.removeOneDocument(configOptions,callback);
 };
 
-contentSourceSchema.statics.addContentSource = function(options, callback) {
-  var ContentSource = this,
-    newContentSourceItem = new ContentSource(options);
+contentDocumentSchema.statics.addContentDocument = function(options, callback) {
+  var ContentDocument = this,
+    newContentDocumentItem = new ContentDocument(options);
 
-  newContentSourceItem.save(callback);
+  newContentDocumentItem.save(callback);
 
   if(!options.created_at){
     options.created_at= new Date();
   }
-  ContentSource.update(
+  ContentDocument.update(
     options,
     {'$set':options},
     {upsert:true},
   callback);
 };
 
-
-exports = module.exports = contentSourceSchema;
+exports = module.exports = contentDocumentSchema;

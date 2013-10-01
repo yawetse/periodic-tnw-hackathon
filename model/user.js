@@ -6,29 +6,77 @@ var logger = require('../config/logger'),
   Schema = mongoose.Schema,
   ObjectId = Schema.ObjectId;
 
-var contentSourceSchema = new Schema({
-  id: ObjectId,
-  title: String,
-  name: String,
-  description: String,
-  image: String,
-  resource_url: String, //exercise, workout
-  content_source_format:{
-    type: String,
-    default:'rss'
-  },
-  content_source_data: Schema.Types.Mixed,
-  user_id: {
-    type:  ObjectId,
-    ref: 'User',
-    index: {
-      sparse: true
-    }
-  },
-  created_at: {
-    type: Date,
-    default: Date.now
-  }
+var userSchema = new Schema({
+    id: ObjectId,
+    email: {
+        type: String,
+        index: {
+            unique: true,
+            sparse: false,
+        }
+    },
+    userid: {
+        type: Number,
+        index: {
+            sparse: true,
+        }
+    },
+    accessToken: String,
+    password: String,
+    description: {
+        type: String,
+        default: "No profile"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+    preferences: {
+        units: {
+            type: String,
+            default: "imperial"
+        }
+    },
+    accountType: {
+        type: String,
+        default: "basic"
+    },
+    gender: {
+        type: String,
+        default: "male"
+    },
+    firstname: String,
+    birthday: Date,
+    lastname: String,
+    username: {
+        type: String,
+        index: {
+            unique: true,
+            sparse: true,
+        }
+    },
+    password: String,
+    url: String,
+    profileimage: [{
+        type: ObjectId,
+        ref: "Media"
+    }],
+    apikey: String,
+    twitterAccessToken: String,
+    twitterAccessTokenSecret: String,
+    twitterUsername: String,
+    twitterId: String,
+    facebookAccessToken: String,
+    facebookUsername: String,
+    facebookId: String,
+    foursquareAccessToken: String,
+    foursquareId: String,
+    foursquareName: String,
+    random: Number
 });
 
 contentSourceSchema.post('init', function (doc) {
@@ -76,4 +124,5 @@ contentSourceSchema.statics.addContentSource = function(options, callback) {
 };
 
 
-exports = module.exports = contentSourceSchema;
+
+exports = module.exports = userSchema;

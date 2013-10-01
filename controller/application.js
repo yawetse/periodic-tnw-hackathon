@@ -44,7 +44,7 @@ module.exports = {
 			onlyCallback = options.onlyCallback;
 
 		logger.verbose(__filename + ': create a new ' + modelname + ' function');
-		// logger.silly(JSON.stringify(newdoc));
+		logger.silly(JSON.stringify(newdoc));
 
 		var newDocument = new Model(newdoc);
 		newDocument.save(function(err, savedDoc) {
@@ -87,5 +87,21 @@ module.exports = {
 				}
 			}
 		});
-	}
+	},
+	remove_empty_object_values: function(obj) {
+		// console.log(obj)
+		for (property in obj) {
+			if (typeof obj[property] == "object") {
+		    	this.remove_empty_object_values(obj[property])
+		  	} else {
+		    	if (obj[property] == '' || obj[property] == ' ' || obj[property] == null || obj[property] == undefined || Object.keys(obj).length == 0) {
+		      	// console.log("deleting obj property: "+property)
+
+		      	delete obj[property];
+		    	}
+		  	}
+		  	// console.log(typeof obj[property])
+		}
+		return obj;
+	},
 };
