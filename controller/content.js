@@ -1,83 +1,78 @@
 'use strict';
 
-
 var mongoose = require('mongoose'),
 	db = require('../config/db'),
 	logger = require('../config/logger'),
 	application_controller = require('./application'),
 	appconfig = require('../config/environment'),
-	Site = mongoose.model('Site');
+	Content = mongoose.model('Content');
 
-exports.index = function(req, res){
-	logger.verbose(__filename + ' - logged out');
-
-	res.render('home/welcome', {
-		title: 'Home page',
-		page: {name:'home'},
-		user: req.user
-	});
-};
 
 exports.new = function(req, res){
-	res.render('sites/new', {
+	logger.verbose(__filename + ' - create a new content source');
+	var content_source_data = req.body,
+		user_data = req.user;
+
+    delete content_source_data._csrf;
+
+	res.render('content/new', {
 		title: 'Home page',
-		page: {name:'home'}
+		page: {name:'content'},
+		user: req.user
 	});
 };
 
 exports.show = function(req, res){
 
-	res.render('sites/show', {
+	res.render('content/show', {
 		title: 'Home page',
-		page: {name:'site'},
-		site: req.loadedSite
+		page: {name:'content'},
+		content: req.loadedContent
 	});
 };
 
 
 exports.create = function(req, res, next) {
-	var options = {};
-		options.Model = Site;
+	var options ={};
+		options.Model = Content;
 		options.req = req; 
 		options.res = res;
 		options.next = next,
 		options.logger = logger;
 		options.newdoc = application_controller.remove_empty_object_values(req.body);
 		options.newdoc.name = application_controller.make_user_name_nice(options.newdoc.title);
-		options.modelname = "site";
-		// options.errorredirect = errorredirect;
-		options.callback = function(newsite){
+		options.modelname = "content";
+		options.callback = function(newcontent){
 			// console.log(newsite);
-			res.redirect('/periodic/sites/'+newsite.name);
-		};
+			res.redirect('/periodic/content/'+newcontent.name);
+		};		// options.errorredirect = errorredirect;
 		// options.onlyCallback = onlyCallback;
 
 	application_controller.createModel(options);
 };
 
-exports.loadSite = function(req, res, next) {
-	console.log("in loading site")
+exports.loadContent = function(req, res, next) {
 	var params = req.params;
 	var options = {};
-		options.Model = Site;
+		options.Model = Content;
 		options.req = req; 
 		options.res = res;
 		options.next = next,
 		options.logger = logger;
-		options.docid = params.siteid;
-		options.modelname = "site";
+		options.docid = params.contentid;
+		options.modelname = "content";
 		options.callback = function(err,doc){
 			// console.log(this)
 			console.log(doc)
 			if(err){
-				application_controller.loadModelCallbackHelperError('media',req,res,logger);
+				application_controller.loadModelCallbackHelperError('content',req,res,logger);
 			}
 			else if(doc){
-		      req.loadedSite = doc;
+		      req.loadedContent= doc;
 		      next();
 			}
 			else{
-				application_controller.loadModelCallbackHelperInvalid('media',req,res,logger);
+				application_controller.loadModelCallbackHelperInvalid('content',req,res,logger);
 			}
 		}.bind(this);
 	application_controller.loadModel(options);
