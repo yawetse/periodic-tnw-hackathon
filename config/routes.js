@@ -62,6 +62,7 @@ exports = module.exports = function(app) {
 	// ****************
 	// app.get('/periodic/module/new', module.new);
 
+	app.get('/periodic/404|:anypage',home.error404);
 
 
 

@@ -16,10 +16,10 @@ exports.index = function(req, res){
 exports.error404 = function(req, res){
 	console.log(req.params)
 	req.flash('error', "Page not found");
-	this.flash_messages = req.flash();
-	res.render('home/welcome', {
+	res.render('home/404', {
 		title: 'Home page',
 		page: {name:"home"},
-		user: req.user
+		user: req.user,
+		flash_messages : req.flash()
 	});
 };

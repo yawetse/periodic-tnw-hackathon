@@ -12,13 +12,14 @@
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <%if(user){%>
     <ul class="nav navbar-nav">
       <li class="dropdown <% if(page.name=='admin-home'){%> active <%}%>">
         <a href="/periodic/site/nymag/settings" class="dropdown-toggle" data-toggle="dropdown">NY Mag <b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="/periodic/user/settings">Eater</a></li>
-          <li><a href="/periodic/user/<%= user.username %>">The Cut</a></li>
-          <li><a href="/periodic/user/<%= user.username %>">Vulture</a></li>
+          <li><a href="/periodic/user/">The Cut</a></li>
+          <li><a href="/periodic/user/">Vulture</a></li>
           <li><a href="/periodic/site/new">Create a site</a></li>
         </ul>
       </li>
@@ -36,6 +37,7 @@
         </ul>
       </li> -->
     </ul>
+    <%}%>
 <!--     <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Search">
