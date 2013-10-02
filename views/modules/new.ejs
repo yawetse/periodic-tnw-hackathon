@@ -8,30 +8,42 @@
 <script src=/bower_components/codemirror/mode/htmlmixed/htmlmixed.js></script>
 <script src=/bower_components/codemirror/mode/htmlembedded/htmlembedded.js></script>
 <style type="text/css">
-	.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
-
-  	.CodeMirror {
-	    float: left;
-	    width: 50%;
-	    border: 1px solid black;
+	.CodeMirror {
+		border-top: 1px solid black; 
+		border-bottom: 1px solid black;
+		height: 100%;
 	}
+
 	iframe {
-	    width: 49%;
-	    float: left;
-	    height: 300px;
+	    width: 100%;
+	    height: 600px;
 	    border: 1px solid black;
-	    border-left: 0px;
 	  }
+	.window-editor{
+	position: relative;
+	}
+	.window_label {
+	border: solid 1px #F1F1F1;
+	background: #fff;
+	display: inline-block;
+	height: 22px;
+	padding: 0 6px;
+	line-height: 22px;
+	position: absolute;
+	top: 7px;
+	right: 6px;
+	text-align: center;
+	font-size: 12px;
+	color: #777;
+	border-radius: 1px;
+	z-index: 30;
+	}
 </style>
 
     <div class="container">
 	    <div class="row">
-		  	<div class="col-md-6">
-		  		<form class="form-horizontal">
-                    <div class="heading">
-                        <h4 class="form-heading">Data Source & Scripting</h4>
-                    </div>
-                    <div class="row">
+		  	<div class="col-md-3">
+                 	<div class="window-editor">
         			    <textarea id=data-js name=data-js>
 {
 response: [
@@ -86,23 +98,29 @@ response: [
 	}
 }								    
 				</textarea>
+				<span class="window_label" style="opacity: 1;">Data</span>	
+				</div>
+			</div>
+		  	<div class="col-md-3">
 
-					</div>
-                </form>	
-		  	</div>
-		 	<div class="col-md-6">
-	 		    <div class="heading">
-			        <h4 class="form-heading">Design & Layout Module</h4>
-			    </div>
+
+
+                 <div class="window-editor">
 			    <textarea id=css name=css>
 
 p{
 color: #ff3300;
 font-size: 16px;
 }
+p.dynamic {
+color: #ffee00;
+}
 
 				</textarea>
+			<span class="window_label" style="opacity: 1;">CSS</span>	
+		</div>
 
+                <div class="window-editor">
 			    <textarea id=code name=code>
 <!doctype html>
 <html>
@@ -121,7 +139,7 @@ font-size: 16px;
 	var items = data['response'];
 	for (x in items){ 
 	#>
-			<p>
+			<p class="dynamic">
 			<#= items[x].text #>
 			</p>
 	<# } #>	  
@@ -142,8 +160,16 @@ font-size: 16px;
   </body>
 </html>
 			</textarea>
+			<span class="window_label" style="opacity: 1;">HTML</span>	
+		</div>
+
+		  	</div>
+		 	<div class="col-md-6">
+	 		    <div class="heading">
+			        <h4 class="form-heading">Result</h4>
+			    </div>
 			    <iframe id=preview></iframe>
-			      </section>
+			     
 
 			    <script>
 			    _.templateSettings = {
