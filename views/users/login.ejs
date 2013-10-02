@@ -1,4 +1,28 @@
 <% include ../layout/header %>
+<script src=/bower_components/jquery-backstretch/jquery.backstretch.js></script>
+<style>
+#myTabContent{
+	background: #000;
+	padding: 8px;
+}
+.nav-tabs>li {
+}
+.nav-tabs>li>a{
+	background: #333;
+}
+
+.tab-pane form div{
+	margin: auto;
+}
+#loginModal{
+	width: 50%;
+	margin: auto;
+}
+</style>
+<script>
+ // To attach Backstrech as the body's background
+  $.backstretch("/images/login-bg.jpg");
+</script>
 <div class="container">
 	<div class="" id="loginModal">
         <div class="modal-heade r">
