@@ -26,7 +26,7 @@ exports.new = function(req, res){
 };
 
 exports.show = function(req, res){
-
+	console.log("hanning here")
 	res.render('content/show', {
 		title: 'Home page',
 		page: {name:'content'},
@@ -52,6 +52,17 @@ exports.create = function(req, res, next) {
 		// options.onlyCallback = onlyCallback;
 
 	application_controller.createModel(options);
+};
+
+exports.query = function(req, res, next){
+	var querydata = req.body;
+	console.log(req.body)
+	ContentDocument.find({}).limit(30).exec(function(err, documents) {
+		res.json({
+			'result': 'success',
+			'data': documents
+		});
+	})	
 };
 
 exports.loadContent = function(req, res, next) {

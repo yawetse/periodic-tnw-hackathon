@@ -6,18 +6,18 @@ var logger = require('../config/logger'),
   Schema = mongoose.Schema,
   ObjectId = Schema.ObjectId;
 
-var contentSchema = new Schema({
+var moduleSchema = new Schema({
   id: ObjectId,
-  title: String,
   name: String,
+  title: String,
   description: String,
   image: String,
-  resource_url: String, //exercise, workout
-  content_source_format:{
-    type: String,
-    default:'rss'
+  moduleQuery: {
+    filter: String,
+    options: String
   },
-  content_source_data: Schema.Types.Mixed,
+  css: String, //exercise, workout
+  template_html: String,
   user_id: {
     type:  ObjectId,
     ref: 'User',
@@ -31,20 +31,20 @@ var contentSchema = new Schema({
   }
 });
 
-contentSchema.post('init', function (doc) {
+moduleSchema.post('init', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been initialized from the db');
 });
-contentSchema.post('validate', function (doc) {
+moduleSchema.post('validate', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been validated (but not saved yet)');
 });
-contentSchema.post('save', function (doc) {
+moduleSchema.post('save', function (doc) {
   logger.verbose(__filename + ' - '+doc.type+' - '+doc._id+' has been saved');
 });
-contentSchema.post('remove', function (doc) {
+moduleSchema.post('remove', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been removed');
 });
 
-contentSchema.statics.removeContent = function(options, callback) {
+moduleSchema.statics.removeContent = function(options, callback) {
   var userid=options.userid,
   model=options.model,
   dataid=options.dataid,
@@ -59,7 +59,7 @@ contentSchema.statics.removeContent = function(options, callback) {
   queryHelper.removeOneDocument(configOptions,callback);
 };
 
-contentSchema.statics.addContent = function(options, callback) {
+moduleSchema.statics.addContent = function(options, callback) {
   var ContentSource = this,
     newContentSourceItem = new ContentSource(options);
 
@@ -76,4 +76,4 @@ contentSchema.statics.addContent = function(options, callback) {
 };
 
 
-exports = module.exports = contentSchema;
+exports = module.exports = moduleSchema;
