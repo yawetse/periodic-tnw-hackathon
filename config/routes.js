@@ -52,7 +52,8 @@ exports = module.exports = function(app) {
 	// **************** 
 	//     site
 	// ****************
-	app.get('/periodic/site/new', site.new);
+	app.get('/periodic/sites/new', site.new);
+	app.post('/periodic/sites/new', site.create);
 	// **************** 
 	//     page
 	// ****************
