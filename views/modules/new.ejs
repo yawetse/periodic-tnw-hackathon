@@ -1,3 +1,208 @@
 <% include ../layout/header %>
-    <h1>This is the modules new page</h1>
+<link rel=stylesheet href=/bower_components/codemirror/lib/codemirror.css>
+<script src=/bower_components/ejs/ejs.js></script>
+<script src=/bower_components/codemirror/lib/codemirror.js></script>
+<script src=/bower_components/codemirror/mode/xml/xml.js></script>
+<script src=/bower_components/codemirror/mode/javascript/javascript.js></script>
+<script src=/bower_components/codemirror/mode/css/css.js></script>
+<script src=/bower_components/codemirror/mode/htmlmixed/htmlmixed.js></script>
+<script src=/bower_components/codemirror/mode/htmlembedded/htmlembedded.js></script>
+<style type="text/css">
+	.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+
+  	.CodeMirror {
+	    float: left;
+	    width: 50%;
+	    border: 1px solid black;
+	}
+	iframe {
+	    width: 49%;
+	    float: left;
+	    height: 300px;
+	    border: 1px solid black;
+	    border-left: 0px;
+	  }
+</style>
+
+    <div class="container">
+	    <div class="row">
+		  	<div class="col-md-6">
+		  		<form class="form-horizontal">
+                    <div class="heading">
+                        <h4 class="form-heading">Data Source & Scripting</h4>
+                    </div>
+                    <div class="row">
+        			    <textarea id=data-js name=data-js>
+{
+response: [
+	{
+		created_at: "2013-10-02T14:53:02Z",
+		id: 56695,
+		image_url: "http://distilleryimage6.s3.amazonaws.com/b7ca8d90233911e38fcc22000aa801f0_7.jpg",
+		source: "instagram",
+		source_id: "550306389751476354_175994331",
+		source_user_avatar: "http://images.ak.instagram.com/profiles/profile_175994331_75sq_1376482584.jpg",
+		source_user_id: "175994331",
+		source_user_name: "myschqaqylla",
+		text: "Muka tak rela blik hostel. #turquoise #hijab #muslimah #kmm #veterinarian",
+		updated_at: "2013-10-02T14:53:02Z",
+		url: "http://instagram.com/p/ejFL7uw7CC/"
+	},
+	{
+		created_at: "2013-10-02T14:31:18Z",
+		id: 56694,
+		image_url: "http://distilleryimage3.s3.amazonaws.com/cb2540302b6611e39d8022000a1fa9ec_7.jpg",
+		source: "instagram",
+		source_id: "557847489418861371_44867533",
+		source_user_avatar: "http://images.ak.instagram.com/profiles/profile_44867533_75sq_1374281479.jpg",
+		source_user_id: "44867533",
+		source_user_name: "ninacocoabeana",
+		text: "Gawd I love doing my nails bahahaha",
+		updated_at: "2013-10-02T14:31:18Z",
+		url: "http://instagram.com/p/e931YFp5s7/"
+	},
+	{
+		created_at: "2013-10-02T14:31:18Z",
+		id: 56693,
+		image_url: "http://distilleryimage1.s3.amazonaws.com/0daddf482b6711e385e022000a9e51fb_7.jpg",
+		source: "instagram",
+		source_id: "557848425781928209_346293975",
+		source_user_avatar: "http://images.ak.instagram.com/profiles/profile_346293975_75sq_1365325270.jpg",
+		source_user_id: "346293975",
+		source_user_name: "jennie_lou_who",
+		text: "#ootd #khakis and #turquoise",
+		updated_at: "2013-10-02T14:31:18Z",
+		url: "http://instagram.com/p/e94DAJPiER/"
+		}
+	],
+	count: 3,
+	pagination: {
+		previous: null,
+		next: 2,
+		current: 1,
+		per_page: 30,
+		count: 52047,
+		pages: 1735
+	}
+}								    
+				</textarea>
+
+					</div>
+                </form>	
+		  	</div>
+		 	<div class="col-md-6">
+	 		    <div class="heading">
+			        <h4 class="form-heading">Design & Layout Module</h4>
+			    </div>
+			    <textarea id=css name=css>
+
+p{
+color: #ff3300;
+font-size: 16px;
+}
+
+				</textarea>
+
+			    <textarea id=code name=code>
+<!doctype html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>HTML5 canvas demo</title>
+    <style id="code_styles">
+    p {font-family: monospace;}
+    {{css}}
+    </style>
+    <# var data = {{data}} #>
+  </head>
+  <body>
+
+	<# 
+	var items = data['response'];
+	for (x in items){ 
+	#>
+			<p>
+			<#= items[x].text #>
+			</p>
+	<# } #>	  
+
+	This is an example of EJS (embedded javascript)
+    <p>Canvas pane goes here:</p>
+    <canvas id=pane width=300 height=200></canvas>
+    <script>
+      var canvas = document.getElementById('pane');
+      var context = canvas.getContext('2d');
+
+      context.fillStyle = 'rgb(250,0,0)';
+      context.fillRect(10, 10, 55, 50);
+
+      context.fillStyle = 'rgba(0, 0, 250, 0.5)';
+      context.fillRect(30, 30, 55, 50);
+    </script>
+  </body>
+</html>
+			</textarea>
+			    <iframe id=preview></iframe>
+			      </section>
+
+			    <script>
+			    _.templateSettings = {
+  					interpolate: /\{\{(.+?)\}\}/g
+				};
+			      var delay;
+			      // Initialize CodeMirror editor with a nice html5 canvas demo.
+			      var editor_data = CodeMirror.fromTextArea(document.getElementById('data-js'), {
+			        mode: 'text/javascript'
+			      });
+			      editor_data.on("dblclick", function() {
+					clearTimeout(delay);
+					delay = setTimeout(updatePreview, 300);
+				  });
+			      var editor_css = CodeMirror.fromTextArea(document.getElementById('css'), {
+			        mode: 'text/css'
+			      });
+			      editor_css.on("dblclick", function() {
+					clearTimeout(delay);
+					delay = setTimeout(updatePreview, 300);
+				  });
+			      var mixedMode = {
+			        name: "smartymixed",
+			        scriptTypes: [{matches: /\/x-handlebars-template|\/x-mustache/i, 
+			                       mode: null},
+			                      {matches: /(text|application)\/(x-)?vb(a|script)/i,
+			                       mode: "vbscript"},]
+			      }; 
+			      var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+			        mode: 'application/x-ejs',
+			        tabMode: 'indent',
+			        lineNumbers: true,
+			        indentUnit: 4,
+			        indentWithTabs: true,
+			        enterMode: "keep",
+			        tabMode: "shift"
+			      });
+			      editor.on("dblclick", function() {
+			        clearTimeout(delay);
+			        delay = setTimeout(updatePreview, 300);
+			      });
+			      
+			      function updatePreview() {
+			        var previewFrame = document.getElementById('preview');
+			        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+			        preview.open();
+			        var preview_css = editor_css.getValue();
+			        var preview_data = editor_data.getValue();
+			        var preview_tmpl = _.template( editor.getValue() );
+			        var preview_html = preview_tmpl({
+			        css: preview_css,
+			        data: preview_data
+			   		});
+			        preview.write( ejs.render(preview_html,{open:'<#',close:'#>'}));
+			        preview.close();
+			      }
+			      setTimeout(updatePreview, 300);
+			    </script>
+		 	</div>
+		</div>
+    </div>
 <% include ../layout/footer %>
