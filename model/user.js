@@ -59,7 +59,6 @@ var userSchema = new Schema({
             sparse: true,
         }
     },
-    password: String,
     url: String,
     profileimage: [{
         type: ObjectId,
@@ -79,20 +78,20 @@ var userSchema = new Schema({
     random: Number
 });
 
-contentSourceSchema.post('init', function (doc) {
+userSchema.post('init', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been initialized from the db');
 });
-contentSourceSchema.post('validate', function (doc) {
+userSchema.post('validate', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been validated (but not saved yet)');
 });
-contentSourceSchema.post('save', function (doc) {
+userSchema.post('save', function (doc) {
   logger.verbose(__filename + ' - '+doc.type+' - '+doc._id+' has been saved');
 });
-contentSourceSchema.post('remove', function (doc) {
+userSchema.post('remove', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been removed');
 });
 
-contentSourceSchema.statics.removeContentSource = function(options, callback) {
+userSchema.statics.removeContentSource = function(options, callback) {
   var userid=options.userid,
   model=options.model,
   dataid=options.dataid,
@@ -107,7 +106,7 @@ contentSourceSchema.statics.removeContentSource = function(options, callback) {
   queryHelper.removeOneDocument(configOptions,callback);
 };
 
-contentSourceSchema.statics.addContentSource = function(options, callback) {
+userSchema.statics.addContentSource = function(options, callback) {
   var ContentSource = this,
     newContentSourceItem = new ContentSource(options);
 

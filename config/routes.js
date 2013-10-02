@@ -2,6 +2,8 @@
 
 var logger = require('./logger'),
 	home = require('../controller/home'),
+	admin = require('../controller/admin'),
+	user = require('../controller/user'),
 	content_source = require('../controller/contentSource');//appconfig = require('./environment');
 
 logger.warn('*** make sure you seed your db first, set your host file and run: node scripts/seed.js ***');
@@ -9,11 +11,36 @@ logger.silly('*** in dev use sudo nodemon app.js ***');
 
 exports = module.exports = function(app) {
 	app.get('/', home.index);
+	// app.get('/admin', admin.index);
+
+	// **************** 
+	//     users
+	// ****************
+	app.get('/users/new|/register', user.new);
+	// app.get('/user/finishregistration', user.updateregistration);
+
+	// app.post('/users/new', user.create);
+	// app.post('/user/finishregistration', user.updateuserregistration);
+	// app.post('/user/updatefastregistration', user.updateFastRegistration);
+	// app.post('/user/updateFastRegistration', user.loadUser, user.updateuserregistration);
+
+	// // **************** 
+	// //     authentication
+	// // ****************
+	// app.get('/login', user.login);
+	// app.post('/login', auth.login);
+	// app.get('/logout', auth.logout);
+
+	// app.get('/auth/facebook', auth.facebook);
+	// app.get('/auth/facebook/callback', auth.facebookCallback);
+	// app.get('/auth/mobile/login', auth.mobileLogin);
+	// app.get('/auth/mobile/requestcsrf', auth.requestCSRF);	
+
 
 	// **************** 
 	//     content
 	// ****************
-	app.post('/content_source/new', content_source.new);
+	app.post('/periodic/content_source/new', content_source.new);
 	// app.get('/content_source/new', user.ensureAuthenticated, media.new);
 
 
