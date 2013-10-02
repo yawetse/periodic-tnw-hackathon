@@ -197,7 +197,7 @@ passport.deserializeUser(function(token, done) {
 	User.findOne({
 		accessToken: token
 	})
-	.populate("profileimage")
+	// .populate("profileimage")
 	.exec(function(err, user) {
 		// console.log(user)
 		done(err, user);

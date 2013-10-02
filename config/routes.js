@@ -43,7 +43,7 @@ exports = module.exports = function(app) {
 	// **************** 
 	//    admin 
 	// ****************
-	app.get('/periodic/admin', admin.new);
+	app.get('/periodic/admin|/periodic', user.ensureAuthenticated, admin.index);
 	// **************** 
 	//     content
 	// ****************

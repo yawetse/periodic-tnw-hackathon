@@ -14,9 +14,9 @@ exports.new = function(req, res){
 exports.index = function(req, res){
 	logger.verbose(__filename + ' - logged out');
 
-	res.render('home/welcome', {
+	res.render('admin/index', {
 		title: 'Home page',
-		page: {name:'home'},
+		page: {name:'admin-home'},
 		user: req.user
 	});
 };

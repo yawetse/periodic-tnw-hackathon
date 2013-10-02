@@ -199,7 +199,7 @@ exports.create = function(req, res) {
 exports.ensureAuthenticated = function(req, res, next) {
 	if (req.isAuthenticated()) {
 		if (!req.user.username) {
-			res.redirect('/user/finishregistration')
+			res.redirect('/periodic/user/finishregistration')
 		} else {
 			return next();
 		}
@@ -216,9 +216,9 @@ exports.ensureAuthenticated = function(req, res, next) {
 			if (req.url) {
 				logger.verbose("controller - user.js - " + req.url)
 				req.session.return_url = req.url;
-				res.redirect('/login?return_url=' + req.url);
+				res.redirect('/periodic/auth/login?return_url=' + req.url);
 			} else {
-				res.redirect('/login');
+				res.redirect('/periodic/auth/login');
 			}
 
 		}
