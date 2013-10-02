@@ -8,7 +8,9 @@ var mongoose = require('mongoose'),
 	appconfig = require('../config/environment'),
 	Content = mongoose.model('Content'),
 	ContentDocument = mongoose.model('ContentDocument'),
-	contentDocumentsToAdd = [];
+	addContentDocument = function(options){
+
+	};
 
 
 exports.new = function(req, res){
@@ -54,15 +56,15 @@ exports.create = function(req, res, next) {
 	application_controller.createModel(options);
 };
 
-exports.loadContent = function(req, res, next) {
+exports.loadContentDocument = function(req, res, next) {
 	var params = req.params;
 	var options = {};
-		options.Model = Content;
+		options.Model = ContentDocument;
 		options.req = req; 
 		options.res = res;
 		options.next = next,
 		options.logger = logger;
-		options.docid = params.contentid;
+		options.docid = params.contentdocumentid;
 		options.modelname = "content";
 		options.callback = function(err,doc){
 			// console.log(this)
@@ -71,7 +73,7 @@ exports.loadContent = function(req, res, next) {
 				application_controller.loadModelCallbackHelperError('content',req,res,logger);
 			}
 			else if(doc){
-		      req.loadedContent= doc;
+		      req.loadedContentDocument= doc;
 		      next();
 			}
 			else{
@@ -79,55 +81,5 @@ exports.loadContent = function(req, res, next) {
 			}
 		}.bind(this);
 	application_controller.loadModel(options);
-};
 
-exports.updateContentDocuments = function(req,res,next){
-	req.contentDocumentsToAdd = [];
-	switch(req.loadedContent.content_source_format){
-		case "rss":
-		default:
-			var feedurl = req.loadedContent.resource_url;
-			parser.parseURL(feedurl, 
-				function(err, out){
-				    // console.log("out.metadata",out.metadata);
-					if(err){
-					}
-					else{
-						for(var x in out.items){
-							var docToSave = {
-								content_source_format:out.type,
-								title: out.items[x].title,
-								content: out.items[x].desc,
-								document_original_uri: out.items[x].link,
-								original_data:  out.items[x],
-								original_id: out.items[x].link,
-								original_date: out.items[x].date,
-								content_source: req.loadedContent._id
-							};
-						    // console.log("docToSave",docToSave);
-						    // console.log(req.contentDocumentsToAdd)
-							req.contentDocumentsToAdd.push(docToSave);
-						};
-					    console.log(req.contentDocumentsToAdd.length)
-					    ContentDocument.create(req.contentDocumentsToAdd, function (err){
-						  	if (err){
-						  		var options = {};
-								options.Model = Content;
-								options.req = req; 
-								options.res = res;
-								options.err = err;
-						  		application_controller.genericModelCallbackHelperError()
-						  	}
-						  	else{
-						  		res.json({
-									'result': 'success',
-									'data': 'updated'
-								});
-						  	}
-						});
-					}	
-				}
-			);
-			break;
-		}
-}
+};

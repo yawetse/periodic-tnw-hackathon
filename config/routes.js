@@ -50,6 +50,8 @@ exports = module.exports = function(app) {
 	app.get('/periodic/content/new', user.ensureAuthenticated, content.new);
 	app.get('/periodic/content/:contentid', user.ensureAuthenticated, content.loadContent, content.show);
 	app.post('/periodic/content/new', content.create);
+
+	app.post('/periodic/content/:contentid/update', user.ensureAuthenticated, content.loadContent, content.updateContentDocuments, content.show)
 	// **************** 
 	//     site
 	// ****************

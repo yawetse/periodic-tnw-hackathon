@@ -8,19 +8,19 @@ var logger = require('../config/logger'),
 
 var contentDocumentSchema = new Schema({
   id: ObjectId,
-  content_source_format:{
-    type: String,
-    default:'rss'
-  },
   title: String,
   name: String,
   content: String,
   media_content: String,
   media_content_type: String,
   document_original_uri: String,
-  original_data:  Schema.Types.Mixed,
+  original_data: {
+      type:Schema.Types.Mixed
+  },
   original_id: String,
-  original_date: String,
+  original_date: {
+    type: Date,
+  },
   user_id: {
     type:  ObjectId,
     ref: 'User',
@@ -30,10 +30,14 @@ var contentDocumentSchema = new Schema({
   },
   content_source: {
     type:  ObjectId,
-    ref: 'ContentSource',
+    ref: 'Content',
     index: {
       sparse: true
     }
+  },
+  content_source_format:{
+    type: String,
+    default:'rss'
   },
   created_at: {
     type: Date,
