@@ -22,6 +22,9 @@
 	.window-editor{
 	position: relative;
 	}
+	.CodeMirror{
+		max-height: 400px;
+	}
 	.window_label {
 	border: solid 1px #F1F1F1;
 	background: #fff;
@@ -43,6 +46,25 @@
     <div class="container">
 	    <div class="row">
 		  	<div class="col-md-3">
+		  		<div>
+		  			<form action="/periodic/content/query" method="post" autocomplete="on" id="content_query_form" name="content_query_form" class="form-horizontal text-left">
+
+					    <input type="hidden" name="_csrf" value=<%= token %> >
+
+					    <div class="control-group">
+					        <div class="controls">
+					            <input type="text" id="inputFieldsQuery" name="fields" placeholder="{}">
+					        </div>
+					    </div>
+		  				<div class="control-group">
+					        <div class="controls">
+					            <input type="text" id="inputOptionsQuery" name="options" placeholder="{}">
+					            <a class="btn btn-success" id="do-content-query">query</a>
+					        </div>
+					    </div>
+		  			</form>
+
+		  		</div>
                  	<div class="window-editor">
         			    <textarea id=data-js name=data-js>
 {
@@ -231,4 +253,44 @@ color: #ffee00;
 		 	</div>
 		</div>
     </div>
+    <script type="text/javascript">
+    	$(function(){
+    		$("#do-content-query").click(function(e){
+    			var formData = {
+    				fields:$("#inputFieldsQuery").val(),
+    				options:$("#inputOptionsQuery").val(),
+    				_csrf:"<%= token %>"
+    			};
+    			if(updateRequest){
+			        updateRequest.abort();
+			    }
+			    var updateRequest = $.ajax({
+			        url: '/periodic/content/query',
+			        type: "post",
+			        dataType: "json",
+			        data: formData
+			    });
+			    updateRequest.done(function(response, textStatus, jqXHR){
+			        console.log(response.data)
+			        switch (response.result){
+			            case "success":
+			            	editor_data.setValue(JSON.stringify(response.data, null, "\t"));
+			            	break;
+			            default:
+			                repetereWebPlatformApp.showAlert("error",response.data,2000);
+			                break;
+			        }
+			        
+			    });
+			    updateRequest.fail(function(jqXHR, textStatus, errorThrown){				    		        
+					console.log(errorThrown,2000);
+			    });
+			    updateRequest.always(function () {
+			        // repetereWebPlatformApp.hideProgressBar();
+			    });
+				return false;
+		        e.preventDefault();
+    		});
+    	})
+    </script>
 <% include ../layout/footer %>
