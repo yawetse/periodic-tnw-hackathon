@@ -4,14 +4,16 @@ var logger = require('./logger'),
 	home = require('../controller/home'),
 	admin = require('../controller/admin'),
 	user = require('../controller/user'),
-	content_source = require('../controller/contentSource');//appconfig = require('./environment');
+	// module = require('../controller/module'),
+	page = require('../controller/page'),
+	site = require('../controller/site'),
+	content = require('../controller/contentSource');//appconfig = require('./environment');
 
 logger.warn('*** make sure you seed your db first, set your host file and run: node scripts/seed.js ***');
 logger.silly('*** in dev use sudo nodemon app.js ***');
 
 exports = module.exports = function(app) {
 	app.get('/', home.index);
-	// app.get('/admin', admin.index);
 
 	// **************** 
 	//     users
@@ -38,10 +40,28 @@ exports = module.exports = function(app) {
 
 
 	// **************** 
+	//    admin 
+	// ****************
+	app.get('/periodic/admin', admin.new);
+	// **************** 
 	//     content
 	// ****************
-	app.post('/periodic/content_source/new', content_source.new);
+	app.post('/periodic/content/new', content.new);
 	// app.get('/content_source/new', user.ensureAuthenticated, media.new);
+	// **************** 
+	//     site
+	// ****************
+	app.get('/periodic/site/new', site.new);
+	// **************** 
+	//     page
+	// ****************
+	app.get('/periodic/page/new', page.new);
+	// **************** 
+	//     module
+	// ****************
+	// app.get('/periodic/module/new', module.new);
+
+
 
 
 
