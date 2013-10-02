@@ -16,10 +16,10 @@ exports = module.exports = function(app) {
 	// **************** 
 	//     users
 	// ****************
-	app.get('/users/new|/register', user.new);
+	app.get('/periodic/users/new|/periodic/register', user.new);
 	// app.get('/user/finishregistration', user.updateregistration);
 
-	// app.post('/users/new', user.create);
+	app.post('/users/new', user.create);
 	// app.post('/user/finishregistration', user.updateuserregistration);
 	// app.post('/user/updatefastregistration', user.updateFastRegistration);
 	// app.post('/user/updateFastRegistration', user.loadUser, user.updateuserregistration);

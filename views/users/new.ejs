@@ -1,0 +1,15 @@
+<% include ../layout/header %>
+<div class="container">
+	<div class="row center-row">
+		<div class="center-span span6">
+			<div class="img-polaroid">
+				<h1 class="text-left"><%= title %></h1>
+				<hr/>
+				<form action="/users/new" method="post" autocomplete="on" id="user_form" name="user_form" class="form-inline ">
+					<% include register_form %>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<% include ../layout/footer %>

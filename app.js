@@ -51,10 +51,6 @@ app.use(express.session(express_session_config));
 app.use(flash());
 app.use(express.csrf());
 
-app.use(app.router);
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
-
-
 // Remember Me middleware
 app.use(function(req, res, next) {
     // console.log(req.url)
@@ -67,6 +63,44 @@ app.use(function(req, res, next) {
     }
     next();
 });
+
+app.use(function(req, res, next) {
+	// console.log(res)
+	// console.log("in here")
+    res.locals.token = req.session._csrf;
+    res.locals.title = "";
+    // res.locals.viewHelper = require('./views/helper/viewHelpers');
+    res.locals.appenvironment = appconfig.environment.name;
+    res.locals.appversion = appconfig.environment.version;
+    // res.locals.filepathdata = {
+    //   s3https: appconfig.environment.fileuploads.s3pathhttps,
+    //   s3http: appconfig.environment.fileuploads.s3pathhttp,
+    //   localpath: appconfig.environment.fileuploads.localpathdir
+    // }
+    var userdata = req.user;
+    if(userdata){
+      if(userdata.apikey){
+        userdata.apikey = null
+        delete userdata.apikey;
+      }
+      if(userdata.password){
+        userdata.password = null
+        delete userdata.password;
+      }
+      if(userdata.accessToken){
+        userdata.accessToken = null
+        delete userdata.accessToken;
+      }
+      
+    }
+    res.locals.user = userdata;
+    // console.log("req.user",req.user);
+    next();
+});
+
+
+app.use(app.router);
+app.use(require('less-middleware')({ src: __dirname + '/public' }));
 
 
 // development only
