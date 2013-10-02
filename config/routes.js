@@ -8,7 +8,7 @@ var logger = require('./logger'),
 	// module = require('../controller/module'),
 	page = require('../controller/page'),
 	site = require('../controller/site'),
-	content = require('../controller/contentSource');//appconfig = require('./environment');
+	content = require('../controller/content');//appconfig = require('./environment');
 
 logger.warn('*** make sure you seed your db first, set your host file and run: node scripts/seed.js ***');
 logger.silly('*** in dev use sudo nodemon app.js ***');
@@ -47,8 +47,9 @@ exports = module.exports = function(app) {
 	// **************** 
 	//     content
 	// ****************
-	app.post('/periodic/content/new', content.new);
-	// app.get('/content_source/new', user.ensureAuthenticated, media.new);
+	app.get('/periodic/content/new', user.ensureAuthenticated, content.new);
+	app.get('/periodic/content/:contentid', user.ensureAuthenticated, content.loadContent, content.show);
+	app.post('/periodic/content/new', content.create);
 	// **************** 
 	//     site
 	// ****************
