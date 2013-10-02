@@ -48,7 +48,7 @@ module.exports = {
 
 		var newDocument = new Model(newdoc);
 		newDocument.save(function(err, savedDoc) {
-			logger.silly('-: trying to create ' + modelname);
+			logger.silly(__filename + ': trying to create ' + modelname);
 			if(onlyCallback){
 				callback(err,savedDoc);
 			}
@@ -88,6 +88,34 @@ module.exports = {
 			}
 		});
 	},
+  	loadModel: function(options) {
+  		var	Model = options.Model,
+			req = options.req,
+			res = options.res,
+			// next = options.next,
+			logger = options.logger,
+			modelname = options.modelname,
+			docid = options.docid,
+			callback = options.callback;
+
+		logger.verbose(__filename + ': loading ' + modelname + ' function');
+
+	    var self = this;
+	    // logger.warn(docid)
+	    if (docid.length == 24) {
+	      Model.findOne({
+	        $or: [{
+	          name: docid
+	        }, {
+	          _id: docid
+	        }]
+	      }, callback.bind(this));
+	    } else {
+	      Model.findOne({
+	        name: docid
+	      }, callback.bind(this));
+	    }
+  	},
 	remove_empty_object_values: function(obj) {
 		// console.log("obj",obj)
 		for (var property in obj) {

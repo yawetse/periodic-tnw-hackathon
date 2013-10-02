@@ -53,6 +53,8 @@ exports = module.exports = function(app) {
 	//     site
 	// ****************
 	app.get('/periodic/sites/new', site.new);
+	app.get('/periodic/sites/:siteid', site.loadSite, site.show);
+
 	app.post('/periodic/sites/new', site.create);
 	// **************** 
 	//     page

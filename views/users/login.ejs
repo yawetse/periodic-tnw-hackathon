@@ -1,15 +1,28 @@
 <% include ../layout/header %>
 <div class="container">
-	<div class="row center-row">
-		<div class="center-span span6">
-			<div class="img-polaroid">
-				<h1 class="text-left"><%= title %></h1>
-				<hr/>
-				<form action="/periodic/auth/login" method="post" autocomplete="on" id="login_form" name="login_form" class="form-horizontal text-left">
-					<% include login_form %>
-				</form>
-			</div>
+	<div class="" id="loginModal">
+        <div class="modal-heade r">
 		</div>
+        <div class="modal-body">
+            <div class=" ">
+				<ul class="nav nav-tabs">
+				<li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+				<li><a href="#create" data-toggle="tab">Create Account</a></li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane active in" id="login">
+						<form action="/periodic/auth/login" method="post" autocomplete="on" id="login_form" name="login_form" class="form-horizontal text-left">
+							<% include login_form %>
+						</form>               
+					</div>
+					<div class="tab-pane fade" id="create">
+					 	<form action="/periodic/users/new" method="post" autocomplete="on" id="user_form" name="user_form" class="form-inline ">
+							<% include register_form %>
+						</form> 
+					</div>
+				</div>
+          	</div>
+    	</div>
 	</div>
 </div>
 <% include ../layout/footer %>
