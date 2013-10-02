@@ -68,6 +68,8 @@ exports = module.exports = function(app) {
 	//     module
 	// ****************
 	app.get('/periodic/modules/new', contentModule.new);
+	app.get('/periodic/modules/:moduleid',contentModule.show);
+	app.post('/periodic/modules/new', contentModule.create);
 
 	app.get('/periodic/404|:anypage',home.error404);
 
