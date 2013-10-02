@@ -1,4 +1,59 @@
 <% include ../layout/header %>
-    <h1>This is the sources new page</h1>
-    <% include create_form %>
+    <div class="container">
+	    <div class="row">
+		  	<div class="col-md-6">
+		  		<form class="form-horizontal">
+                    <div class="heading">
+                        <h4 class="form-heading">Pre Loaded</h4>
+                    </div>
+                    <div class="row">
+						<div class="col-md-4">
+							<div class="thumbnail">
+							    <img src="/images/icon-pearson.jpeg" alt="ALT NAME">
+							    <div class="caption">
+							      <h3>Pearson</h3>
+							      <p></p>
+							      <p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">Add</a></p>
+							    </div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="thumbnail">
+							    <img src="/images/icon-fs.jpeg" alt="ALT NAME">
+							    <div class="caption">
+							      <h3>Foursquare</h3>
+							      <p></p>
+							      <p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">Add</a></p>
+							    </div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="thumbnail">
+							    <img src="/images/icon-espn.jpeg" alt="ALT NAME">
+							    <div class="caption">
+							      <h3>ESPN</h3>
+							      <p></p>
+							      <p align="center"><a href="http://bootsnipp.com/" class="btn btn-primary btn-block">Add</a></p>
+							    </div>
+							</div>
+						</div>
+					</div>
+                </form>	
+		  	</div>
+		 	<div class="col-md-6">
+	 		    <div class="heading">
+			        <h4 class="form-heading">Custom</h4>
+			    </div>
+                <% include ../sites/create_modules_form %>
+		 	</div>
+		</div>
+		<div class="row">
+		 	<div class="col-md-6">
+			        <div class="controls" style="padding: 8px;">
+			            <button type="submit" class="btn btn-success">Submit</button>
+			        </div>
+			</div>
+		</div>
+
+    </div>
 <% include ../layout/footer %>
