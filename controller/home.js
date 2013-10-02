@@ -3,6 +3,7 @@
 var logger = require('../config/logger');
 
 exports.index = function(req, res){
+	console.log(req.user)
 	logger.verbose(__filename + ' - logged out');
 
 	res.render('home/welcome', {

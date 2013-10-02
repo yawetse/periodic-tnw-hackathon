@@ -8,7 +8,9 @@ var express = require('express'),
 	logger = require('./config/logger'),
 	http = require('http'),
 	flash = require('connect-flash'),
-	path = require('path');
+	path = require('path'),
+	passport = require('passport'),
+	LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
@@ -63,12 +65,16 @@ app.use(function(req, res, next) {
     }
     next();
 });
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(function(req, res, next) {
 	// console.log(res)
 	// console.log("in here")
     res.locals.token = req.session._csrf;
-    res.locals.title = "";
+    res.locals.title = "";        
+    res.locals.flash_messages = null;
+
     // res.locals.viewHelper = require('./views/helper/viewHelpers');
     res.locals.appenvironment = appconfig.environment.name;
     res.locals.appversion = appconfig.environment.version;

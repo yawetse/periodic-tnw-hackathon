@@ -16,26 +16,22 @@ exports.new = function(req, res, next) {
 		},
 		flash_messages : req.flash(),
 		title : "Create an Account"
-	})
-	// res.render('users/new',{title: title})
-	// var options;
-	// 	options.Model = ContentSource;
-	// 	options.req = req; 
-	// 	options.res = res;
-	// 	options.next = next,
-	// 	options.logger = logger;
-	// 	options.newdoc = application_controller.remove_empty_object_values(req.body);
-	// 	options.modelname = "contentSource";
-	// 	// options.errorredirect = errorredirect;
-	// 	// options.callback = callback;
-	// 	// options.onlyCallback = onlyCallback;
+	});
+};
 
-	// application_controller.createModel(options);
+exports.login = function(req, res, next) {
+	res.render('users/login', {
+		page: {
+			name: "login"
+		},
+		flash_messages : req.flash(),
+		title : "sign in Account"
+	});
 };
 
 exports.create = function(req, res) {
-	var bcrypt = require('bcrypt');
-	var userdata = application_controller.remove_empty_object_values(req.body);
+	var bcrypt = require('bcrypt'),
+		userdata = application_controller.remove_empty_object_values(req.body);
 	logger.verbose(__filename + ' - create a new user');
 	// logger.verbose(userdata);
 	// console.log(userdata)
@@ -46,12 +42,12 @@ exports.create = function(req, res) {
 		req.flash('error', "missing password");
 		logger.error("controller - user.js - missing password - trying to create");
 
-		this.flash_messages = req.flash();
-		this.user = req.user;
 		res.render('users/new', {
-			title: "Join Repetere",
+			title: "Create an account",
 			user: userdata,
-			page: {name:"register"}
+			page: {name:"register"},
+			flash_messages : req.flash()
+
 		});
 	} else if (userdata.passwordconfirm != userdata.password) {
 		delete userdata.password;
@@ -59,11 +55,10 @@ exports.create = function(req, res) {
 		req.flash('error', "confirmation password doesn't match");
 		logger.error("controller - user.js - confirmation password doesn't match");
 
-		this.flash_messages = req.flash();
-		this.user = req.user;
 		res.render('users/new', {
 			user: userdata,
-			page: {name:"register"}
+			page: {name:"register"},
+			flash_messages : req.flash()
 		});
 	}
 	 else if (userdata.email === undefined || !userdata.email || userdata.username === undefined || !userdata.username) {
@@ -138,15 +133,15 @@ exports.create = function(req, res) {
 							logger.error(err);
 							// console.log(err)
 							req.flash('error', err.toString())
-							this.flash_messages = req.flash();
-							this.user = req.user;
 
 							res.render('users/new', {
 								user: userdata,
 								page: {
 									name: "register"
 								},
-								title : "Join Repetere"
+								title : "Join Repetere",
+								flash_messages : req.flash()
+
 
 							})
 						} else {
@@ -155,7 +150,7 @@ exports.create = function(req, res) {
 
 								if (err) {
 									logger.error(err)
-									return res.redirect('/login');
+									return res.redirect('/periodic/login');
 								}
 
 								logger.silly("controller - auth.js - "+req.session.return_url)
@@ -200,3 +195,40 @@ exports.create = function(req, res) {
 		);
 	}
 };
+
+exports.ensureAuthenticated = function(req, res, next) {
+	if (req.isAuthenticated()) {
+		if (!req.user.username) {
+			res.redirect('/user/finishregistration')
+		} else {
+			return next();
+		}
+	} else {
+	    if (req.query.format == "json" || req.xhr) {
+	    	res.send({
+	        "result": "error",
+	        "data": {
+	          error: "authentication requires "
+	        }
+	      });
+		}
+		else{
+			if (req.url) {
+				logger.verbose("controller - user.js - " + req.url)
+				req.session.return_url = req.url;
+				res.redirect('/login?return_url=' + req.url);
+			} else {
+				res.redirect('/login');
+			}
+
+		}
+	}
+}
+exports.apiAuthenticated = function(req, res, next) {
+	// console.log(req.body)
+	if (req.body.apikey && req.body.userid) {
+		return next();
+	} else {
+		return next(new Error("invalid api request"));
+	}
+}

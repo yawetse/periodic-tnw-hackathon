@@ -4,6 +4,7 @@ var logger = require('./logger'),
 	home = require('../controller/home'),
 	admin = require('../controller/admin'),
 	user = require('../controller/user'),
+	auth = require('../controller/auth'),
 	// module = require('../controller/module'),
 	page = require('../controller/page'),
 	site = require('../controller/site'),
@@ -27,11 +28,11 @@ exports = module.exports = function(app) {
 	// app.post('/user/updateFastRegistration', user.loadUser, user.updateuserregistration);
 
 	// // **************** 
-	// //     authentication
+	//     authentication
 	// // ****************
-	// app.get('/login', user.login);
-	// app.post('/login', auth.login);
-	// app.get('/logout', auth.logout);
+	app.get('/periodic/auth/login', user.login);
+	app.post('/periodic/auth/login', auth.login);
+	app.get('/periodic/auth/logout', auth.logout);
 
 	// app.get('/auth/facebook', auth.facebook);
 	// app.get('/auth/facebook/callback', auth.facebookCallback);

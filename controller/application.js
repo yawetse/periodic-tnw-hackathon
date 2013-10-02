@@ -89,8 +89,8 @@ module.exports = {
 		});
 	},
 	remove_empty_object_values: function(obj) {
-		// console.log(obj)
-		for (property in obj) {
+		// console.log("obj",obj)
+		for (var property in obj) {
 			if (typeof obj[property] == "object") {
 		    	this.remove_empty_object_values(obj[property])
 		  	} else {

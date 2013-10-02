@@ -91,6 +91,82 @@ userSchema.post('remove', function (doc) {
   logger.verbose(__filename + ' - '+doc._id+' has been removed');
 });
 
+userSchema.statics.generateRandomTokenStatic = function () {
+  var user = this,
+      chars = "_!abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+      token = new Date().getTime() + '_';
+  for ( var x = 0; x < 16; x++ ) {
+    var i = Math.floor( Math.random() * 62 );
+    token += chars.charAt( i );
+  }
+  return token;
+};
+
+
+userSchema.statics.fastRegisterUser = function(userdata,callback){
+    logger.silly("model - user.js - trying to fast register user");
+    var bcrypt = require('bcrypt');
+    var application_controller = require('../controller/application');
+    var userdata = userdata;
+    // console.log(userdata);
+    if(userdata._csrf){delete userdata._csrf;}
+    if(userdata.submit){delete userdata.submit;}
+    if (
+    userdata.password === undefined || !userdata.password || userdata.password === '' || userdata.password === ' ') {
+        delete userdata.password;
+        delete userdata.passwordconfirm;
+        if(callback){
+            callback(new Error("missing password"),userdata);            
+        }
+    }
+    else if(userdata.password.length <8){
+        if(callback){
+            callback(new Error("password is too short - min 8 characters"),userdata);            
+        }
+    }
+    else {
+        delete userdata.passwordconfirm;
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(userdata.password, salt, function(err, hash) {
+                // Store hash in your password DB.
+                userdata.password = hash;
+                logger.silly("model - user.js - to save user")
+                // logger.info(userdata)
+                if(userdata.username && !userdata.email){
+                    userdata.email = userdata.username;
+                    delete userdata.username;
+                }
+                // logger.info(userdata)
+                var User = mongoose.model('User');
+                userdata.apikey = User.generateRandomTokenStatic();
+                // console.log(userdata)
+
+                var newUser = User(userdata);
+                newUser.save(function(err, user) {
+                    logger.silly("model - user.js - trying to create user")
+                    // console.log("user",user)
+
+                    if (err) {
+                        logger.error(err);
+                        if(callback){
+                            callback(err,userdata);         
+                        }
+                    } else {
+                        // User.sendAsyncWelcomeEmail(user);
+                        // if(user.password){
+                        //     user.password = null;
+                        //     delete user.password;
+                        // }
+                        if(callback){
+                            callback(false,user);
+                        }
+                    }
+                });
+
+            });
+        });
+    }
+} 
 userSchema.statics.removeContentSource = function(options, callback) {
   var userid=options.userid,
   model=options.model,
@@ -122,6 +198,24 @@ userSchema.statics.addContentSource = function(options, callback) {
   callback);
 };
 
+// Password verification
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
+    var bcrypt = require('bcrypt');
+    // logger.silly("model - user.js - hashed password: "+this.password);
+    // console.log(this.password)
+
+    if(this.password){
+        // logger.silly("tyring bcrypt")
+        bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+            if(err) return cb(err);
+            cb(null, isMatch);
+        });
+    }
+    else{
+        logger.silly("user has no pw")
+        return cb(null,false)
+    }
+};
 
 
 exports = module.exports = userSchema;

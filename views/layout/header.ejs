@@ -15,3 +15,9 @@
 	    <!-- Custom styles for this template -->
 	</head>
 	<body>
+	<div class="container">
+	<% console.log(user);%>
+	<% if(flash_messages != undefined ){%>
+	    <div id="alert-container"><%= flash_messages.error %></div>
+	<%} %>
+    </div>
