@@ -5,7 +5,7 @@ var logger = require('./logger'),
 	admin = require('../controller/admin'),
 	user = require('../controller/user'),
 	auth = require('../controller/auth'),
-	// module = require('../controller/module'),
+	contentModule = require('../controller/contentModule'),
 	page = require('../controller/page'),
 	site = require('../controller/site'),
 	content = require('../controller/content');//appconfig = require('./environment');
@@ -66,7 +66,7 @@ exports = module.exports = function(app) {
 	// **************** 
 	//     module
 	// ****************
-	// app.get('/periodic/module/new', module.new);
+	app.get('/periodic/modules/new', contentModule.new);
 
 	app.get('/periodic/404|:anypage',home.error404);
 

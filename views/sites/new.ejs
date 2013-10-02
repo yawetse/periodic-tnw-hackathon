@@ -1,3 +1,572 @@
 <% include ../layout/header %>
-    <h1>This is the sites new page</h1>
+<link rel=stylesheet href=/bower_components/codemirror/lib/codemirror.css>
+<script src=/bower_components/codemirror/lib/codemirror.js></script>
+<script src=/bower_components/codemirror/mode/xml/xml.js></script>
+<script src=/bower_components/codemirror/mode/javascript/javascript.js></script>
+<script src=/bower_components/codemirror/mode/css/css.js></script>
+<script src=/bower_components/codemirror/mode/htmlmixed/htmlmixed.js></script>
+<script src=/bower_components/codemirror/mode/htmlembedded/htmlembedded.js></script>
+
+
+
+<style type="text/css">.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
+
+<style type=text/css>
+      .CodeMirror {
+        float: left;
+        width: 50%;
+        border: 1px solid black;
+      }
+      iframe {
+        width: 49%;
+        float: left;
+        height: 300px;
+        border: 1px solid black;
+        border-left: 0px;
+      }
+</style>
+
+    <div class="container">
+	    <div class="row">
+		  	<div class="col-md-6">
+		  		<form class="form-horizontal">
+                    <div class="heading">
+                        <h4 class="form-heading">Data Source & Scripting</h4>
+                    </div>
+                    <div class="row">
+                    			    <textarea id=data-js name=data-js>
+{
+response: [
+{
+created_at: "2013-10-02T14:53:02Z",
+id: 56695,
+image_url: "http://distilleryimage6.s3.amazonaws.com/b7ca8d90233911e38fcc22000aa801f0_7.jpg",
+source: "instagram",
+source_id: "550306389751476354_175994331",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_175994331_75sq_1376482584.jpg",
+source_user_id: "175994331",
+source_user_name: "myschqaqylla",
+text: "Muka tak rela blik hostel. #turquoise #hijab #muslimah #kmm #veterinarian",
+updated_at: "2013-10-02T14:53:02Z",
+url: "http://instagram.com/p/ejFL7uw7CC/"
+},
+{
+created_at: "2013-10-02T14:31:18Z",
+id: 56694,
+image_url: "http://distilleryimage3.s3.amazonaws.com/cb2540302b6611e39d8022000a1fa9ec_7.jpg",
+source: "instagram",
+source_id: "557847489418861371_44867533",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_44867533_75sq_1374281479.jpg",
+source_user_id: "44867533",
+source_user_name: "ninacocoabeana",
+text: "Gawd I love doing my nails bahahaha",
+updated_at: "2013-10-02T14:31:18Z",
+url: "http://instagram.com/p/e931YFp5s7/"
+},
+{
+created_at: "2013-10-02T14:31:18Z",
+id: 56693,
+image_url: "http://distilleryimage1.s3.amazonaws.com/0daddf482b6711e385e022000a9e51fb_7.jpg",
+source: "instagram",
+source_id: "557848425781928209_346293975",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_346293975_75sq_1365325270.jpg",
+source_user_id: "346293975",
+source_user_name: "jennie_lou_who",
+text: "#ootd #khakis and #turquoise",
+updated_at: "2013-10-02T14:31:18Z",
+url: "http://instagram.com/p/e94DAJPiER/"
+},
+{
+created_at: "2013-10-02T14:31:18Z",
+id: 56692,
+image_url: "http://distilleryimage7.s3.amazonaws.com/2afb27b82b6711e38c7c22000a1fb876_7.jpg",
+source: "instagram",
+source_id: "557848838206757119_290012917",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_290012917_75sq_1361276839.jpg",
+source_user_id: "290012917",
+source_user_name: "waterandjewel",
+text: "more vintage lovelies in the shop this morning! #vintage #vintagejewelry #turquoise #turquoiserings #rings #girl #gyspy #beautiful #bohemian #boho #bohochic #lovely #ooak",
+updated_at: "2013-10-02T14:31:18Z",
+url: "http://instagram.com/p/e94JAPrZj_/"
+},
+{
+created_at: "2013-10-02T14:31:18Z",
+id: 56691,
+image_url: "http://distilleryimage9.s3.amazonaws.com/1806c59a2b6711e39a9c22000a1fbe09_8.jpg",
+source: "instagram",
+source_id: "557848571448453957_213462361",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_213462361_75sq_1378406672.jpg",
+source_user_id: "213462361",
+source_user_name: "stephbence",
+text: "I have far too much jewellery... #jewellery #fashion #earrings #necklace #mannequin #turquoise #accessorise #golds #blues #silver #black #feathers #beads #brown #chest",
+updated_at: "2013-10-02T14:31:18Z",
+url: "http://instagram.com/p/e94FHzpOtF/"
+},
+{
+created_at: "2013-10-02T14:31:17Z",
+id: 56690,
+image_url: "http://distilleryimage10.s3.amazonaws.com/1761721c2b1b11e380a722000a9e28dc_7.jpg",
+source: "instagram",
+source_id: "557574743494436146_403103528",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_403103528_75sq_1370185609.jpg",
+source_user_id: "403103528",
+source_user_name: "dharajewelry",
+text: "See more items at www.dharajewelry.etsy.com",
+updated_at: "2013-10-02T14:31:17Z",
+url: "http://instagram.com/p/e850ZptyUy/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56689,
+image_url: "http://distilleryimage2.s3.amazonaws.com/bf594ba22b6611e3bbe722000a9f1253_7.jpg",
+source: "instagram",
+source_id: "557847323381644202_327211069",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_327211069_75sq_1365208720.jpg",
+source_user_id: "327211069",
+source_user_name: "prettylittlestylejewelry",
+text: "Obsessed with this tassell necklace! Perfect to dress up or dress down! Prettylittlestyle.etsy.com #prettylittlestyle #handmadejewelry #turquoise #picoftheday #photooftheday #instadaily #boutiquestyle #fallfashion #love #beautiful #fashion",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e93y9dELuq/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56688,
+image_url: "http://distilleryimage10.s3.amazonaws.com/02570a1a2b6811e3a17a22000a1fd129_7.jpg",
+source: "instagram",
+source_id: "557851869088132462_225984682",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_225984682_75sq_1369585477.jpg",
+source_user_id: "225984682",
+source_user_name: "nayadi31",
+text: "Love this shoes so much!! #TIZIO from my friend #turquoise",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e941G-SS1u/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56687,
+image_url: "http://distilleryimage9.s3.amazonaws.com/f9eb4bfc2b6711e3945822000ae90d56_8.jpg",
+source: "instagram",
+source_id: "557851750622018457_408577541",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_408577541_75sq_1378822372.jpg",
+source_user_id: "408577541",
+source_user_name: "tayybarlow",
+text: "I'm safe safe cuz u love me <3 #stripedshirts#turquoise#shorts#with#leggings#studdedboots#ponytail#superchick#im#me",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e94zYpJ7uZ/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56686,
+image_url: "http://distilleryimage6.s3.amazonaws.com/f217e1242b6711e3814022000aa80033_8.jpg",
+source: "instagram",
+source_id: "557851640472571062_304318874",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_304318874_75sq_1378231944.jpg",
+source_user_id: "304318874",
+source_user_name: "s_adams97",
+text: "I love Converse ❤️ #Converse #Turquoise #Blue #White",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e94xyDvIy2/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56685,
+image_url: "http://distilleryimage1.s3.amazonaws.com/57a899522b6811e3a5b3123139272901_7.jpg",
+source: "instagram",
+source_id: "557853069882548929_347433447",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_347433447_75sq_1365439788.jpg",
+source_user_id: "347433447",
+source_user_name: "rosestyleshoppe",
+text: "#turquoise #scarves #fabulous #sweaters",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e95GlTNeLB/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56684,
+image_url: "http://distilleryimage6.s3.amazonaws.com/3b96fba02b6811e3a94c22000ab68b88_7.jpg",
+source: "instagram",
+source_id: "557852674809466506_23600322",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_23600322_75sq_1343686758.jpg",
+source_user_id: "23600322",
+source_user_name: "sugarandtype",
+text: "Glitter and sparkles and candy oh my! @bashbybrenly asked me to design some items for her launch party, and they were soooo fun! Photography by the wonderful @amy_demos and @jordan_demos and a feature today on hostess with the mostess! #smallbiz #collab #gold #glitter #handlettering #candy #pink #turquoise #collab #feature #blog",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e95A1XBQ6K/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56683,
+image_url: "http://distilleryimage0.s3.amazonaws.com/09f401142b6911e3b7fb22000aeb106a_7.jpg",
+source: "instagram",
+source_id: "557855579124940956_28963471",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_28963471_75sq_1378260537.jpg",
+source_user_id: "28963471",
+source_user_name: "sarahrolamal",
+text: "Picture of the day #braces #turquoise #lazyday #roar",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e95rGNtkCc/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56682,
+image_url: "http://distilleryimage7.s3.amazonaws.com/08d5fb022b6911e3b79722000aeb11d7_8.jpg",
+source: "instagram",
+source_id: "557855563456013899_4264440",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_4264440_75sq_1380127627.jpg",
+source_user_id: "4264440",
+source_user_name: "luisameirelles",
+text: "Bom dia! Tem post novo com as lindezas da @mairabumachar  www.luisameirelles.com #mairabumachar #turquoise",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e95q3nxWZL/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56681,
+image_url: "http://distilleryimage4.s3.amazonaws.com/f32ac1d42b6811e3af3822000ae802ec_8.jpg",
+source: "instagram",
+source_id: "557855258416995268_36905469",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_36905469_75sq_1380529911.jpg",
+source_user_id: "36905469",
+source_user_name: "eileenlykacholo",
+text: "Breaking out the vest #denimvest #turquoise #levis #fall",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e95mbiB1vE/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56680,
+image_url: "http://distilleryimage7.s3.amazonaws.com/44751d322b6911e3b26122000a1fb538_7.jpg",
+source: "instagram",
+source_id: "557856402574895479_313012521",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_313012521_75sq_1380510934.jpg",
+source_user_id: "313012521",
+source_user_name: "xwenddyrenaud",
+text: "Peinard din toilette de l'école . #peace#toilette#school#turquoise#haha#peinard#coool#étuie#papillon#instacool#picoftheday#jsuis#cool#au#yah#bonne#journée#la",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e953FHJ2l3/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56679,
+image_url: "http://distilleryimage9.s3.amazonaws.com/9c48c1bc2b6911e3b8d122000aeb43f3_8.jpg",
+source: "instagram",
+source_id: "557857638537098157_30398963",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_30398963_75sq_1372815360.jpg",
+source_user_id: "30398963",
+source_user_name: "fortalexa",
+text: " #furby #new #baby #love #egg #turquoise",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e96JEMPfOt/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56678,
+image_url: "http://distilleryimage6.s3.amazonaws.com/a56efedc2b6911e3a49722000aaa05c4_8.jpg",
+source: "instagram",
+source_id: "557857767374921070_29106222",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_29106222_75sq_1372198937.jpg",
+source_user_id: "29106222",
+source_user_name: "charlpickeringxo",
+text: "Finally got an elastic band on my braces, don't like it! #elastic #band #braces #feels #weird #turquoise #teeth",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e96K8Lkx1u/"
+},
+{
+created_at: "2013-10-02T14:31:16Z",
+id: 56677,
+image_url: "http://distilleryimage10.s3.amazonaws.com/2ca498762b6a11e3bd1c22000a1fd1e7_8.jpg",
+source: "instagram",
+source_id: "557859670254713926_356530798",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_356530798_75sq_1376635887.jpg",
+source_user_id: "356530798",
+source_user_name: "emmajeanwade",
+text: "Yay new shirts!! #work #LEAP #WSRA #specialrecreation #shirt #turquoise #instahappy",
+updated_at: "2013-10-02T14:31:16Z",
+url: "http://instagram.com/p/e96moYDHxG/"
+},
+{
+created_at: "2013-10-02T14:31:15Z",
+id: 56676,
+image_url: "http://distilleryimage5.s3.amazonaws.com/514bfef82b6a11e3865522000ae81dbd_8.jpg",
+source: "instagram",
+source_id: "557860186074260537_261089744",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_261089744_75sq_1380376155.jpg",
+source_user_id: "261089744",
+source_user_name: "babelineyyyy",
+text: "Walletnizer from Gwyneth Leather Handbags Green,wisteria,Turquoise,redlust #Gwyneth #Brands #Walletnizer #Gwynethleatherhandbags #wisteria #Turquoise #Green #redlust #Color #Colour #Nice",
+updated_at: "2013-10-02T14:31:15Z",
+url: "http://instagram.com/p/e96uIxSiQ5/"
+},
+{
+created_at: "2013-10-02T14:31:15Z",
+id: 56675,
+image_url: "http://distilleryimage0.s3.amazonaws.com/37e293aa2b6a11e3829f22000ae9027d_8.jpg",
+source: "instagram",
+source_id: "557859828509615196_571059520",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_571059520_75sq_1379958480.jpg",
+source_user_id: "571059520",
+source_user_name: "macaverdescs",
+text: "Corre que ainda temos alguma peças! #mintdress #turquoise #dress #vestido",
+updated_at: "2013-10-02T14:31:15Z",
+url: "http://instagram.com/p/e96o7wxqRc/"
+},
+{
+created_at: "2013-10-02T14:31:15Z",
+id: 56674,
+image_url: "http://distilleryimage7.s3.amazonaws.com/665783622b6a11e3a73b22000aa80571_8.jpg",
+source: "instagram",
+source_id: "557860482291108475_271313105",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_271313105_75sq_1378258400.jpg",
+source_user_id: "271313105",
+source_user_name: "katrinaklee",
+text: "Last full day with my #turquoise #braces. -_- I will miss you. Going pink next!",
+updated_at: "2013-10-02T14:31:15Z",
+url: "http://instagram.com/p/e96ycpMIp7/"
+},
+{
+created_at: "2013-10-02T14:31:15Z",
+id: 56673,
+image_url: "http://distilleryimage5.s3.amazonaws.com/8ceb82942b6a11e3a47822000a9f3c30_7.jpg",
+source: "instagram",
+source_id: "557861025212050193_306724905",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_306724905_75sq_1365258093.jpg",
+source_user_id: "306724905",
+source_user_name: "complementsbykari",
+text: "Disponibles #earrings #turquoise #flower #orange #crystals #chapas #handmade #accesories #complementsbykari",
+updated_at: "2013-10-02T14:31:15Z",
+url: "http://instagram.com/p/e966WRzKsR/"
+},
+{
+created_at: "2013-10-02T14:31:15Z",
+id: 56672,
+image_url: "http://distilleryimage4.s3.amazonaws.com/b20a7bfc2b6a11e3810822000aaa09c2_8.jpg",
+source: "instagram",
+source_id: "557861547626126464_18261718",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_18261718_75sq_1379472502.jpg",
+source_user_id: "18261718",
+source_user_name: "gypsy_wanderer13",
+text: "Love findin' little gems like this. #poppintags #only20dollarsinmypocket #turquoise #beautiful #nativeamerican #nativeindian #thesearemypeople #loveit #gorgeous #gems",
+updated_at: "2013-10-02T14:31:15Z",
+url: "http://instagram.com/p/e97B80GtyA/"
+},
+{
+created_at: "2013-10-02T14:31:15Z",
+id: 56671,
+image_url: "http://distilleryimage11.s3.amazonaws.com/efa7e67a2b6a11e38d3d22000a9e17ac_8.jpg",
+source: "instagram",
+source_id: "557862414834966731_190599583",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_190599583_75sq_1380675749.jpg",
+source_user_id: "190599583",
+source_user_name: "celiz0",
+text: "How can you not smile when you walk into my bathroom ❤️ #colourful #colours #happy #bright #brightcolours #love #cute #favourite #green #turquoise #orange #afticantulip #maria #crayongreen #silly #some #ilovecolour #makesmehappy #smile",
+updated_at: "2013-10-02T14:31:15Z",
+url: "http://instagram.com/p/e97Okdx6DL/"
+},
+{
+created_at: "2013-10-02T14:31:15Z",
+id: 56670,
+image_url: "http://distilleryimage6.s3.amazonaws.com/440a59982b6911e3979622000a1fb04f_7.jpg",
+source: "instagram",
+source_id: "557856396693967182_245687019",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_245687019_75sq_1379526755.jpg",
+source_user_id: "245687019",
+source_user_name: "jewelvenom",
+text: "Not the greatest picture - but this is what I've been working on today x",
+updated_at: "2013-10-02T14:31:15Z",
+url: "http://instagram.com/p/e952_on5FO/"
+},
+{
+created_at: "2013-10-02T14:31:15Z",
+id: 56669,
+image_url: "http://distilleryimage3.s3.amazonaws.com/f99d42882b6a11e3852722000a1fbd42_8.jpg",
+source: "instagram",
+source_id: "557862554980119447_144221339",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_144221339_75sq_1374091298.jpg",
+source_user_id: "144221339",
+source_user_name: "xscreamoex",
+text: "New shoes. | @suprafootwear @blokshop | #supra #footwear #owen #shoes #sneakers #turquoise #black",
+updated_at: "2013-10-02T14:31:15Z",
+url: "http://instagram.com/p/e97Qm_FPOX/"
+},
+{
+created_at: "2013-10-02T14:31:15Z",
+id: 56668,
+image_url: "http://distilleryimage7.s3.amazonaws.com/23f380242b6b11e39cb122000ab5921f_8.jpg",
+source: "instagram",
+source_id: "557863150755753007_490321258",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_490321258_75sq_1378821195.jpg",
+source_user_id: "490321258",
+source_user_name: "minnandmadeline",
+text: "Turquoise, tourmaline, citrine & yellow jade on leather and cotton cord with embossed brass bracelet. #bracelet #turquoise #trendy #fashion #buy #sale # jewelry",
+updated_at: "2013-10-02T14:31:15Z",
+url: "http://instagram.com/p/e97ZR2E6wv/"
+},
+{
+created_at: "2013-10-02T14:31:14Z",
+id: 56667,
+image_url: "http://distilleryimage11.s3.amazonaws.com/e065e4fc2b6811e3bcf322000aaa033b_8.jpg",
+source: "instagram",
+source_id: "557854994301483083_472220285",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_472220285_75sq_1379458843.jpg",
+source_user_id: "472220285",
+source_user_name: "monnique13",
+text: "#nails #nailart #loveit",
+updated_at: "2013-10-02T14:31:14Z",
+url: "http://instagram.com/p/e95iljhHhL/"
+},
+{
+created_at: "2013-10-02T14:31:14Z",
+id: 56666,
+image_url: "http://distilleryimage1.s3.amazonaws.com/8e5710522b6b11e3b4ef22000a1fbd4d_8.jpg",
+source: "instagram",
+source_id: "557864648124884893_547068800",
+source_user_avatar: "http://images.ak.instagram.com/profiles/profile_547068800_75sq_1379403828.jpg",
+source_user_id: "547068800",
+source_user_name: "enzeecreativebox",
+text: "Promo Promo Promo #enzeecreativebox #minitasbih #doorgift #prayerbeads #beads #bracelet #malaysia #shahalam #kualalumpur #weddingpreparations #aqiqah #akikah #malaysianwedding #beadsjewelry #diyjewelry #blogshop #malaysiablogshop #malaysiaonlineshop #malaysiagram #malaysiaonlineshopping #malaysiafashion #lokalah #lokalahmy #gemstone #pearls #turquoise #fluoride #rhodonite #charms #pendant",
+updated_at: "2013-10-02T14:31:14Z",
+url: "http://instagram.com/p/e97vEYO2ed/"
+}
+],
+count: 30,
+pagination: {
+previous: null,
+next: 2,
+current: 1,
+per_page: 30,
+count: 52047,
+pages: 1735
+}
+}								    
+									</textarea>
+
+			    <textarea id=data-ejs name=data-ejs>
+<%
+function hello(who) {
+	return "Hello " + who;
+}
+%>
+				</textarea>
+
+					</div>
+                </form>	
+		  	</div>
+		 	<div class="col-md-6">
+	 		    <div class="heading">
+			        <h4 class="form-heading">Design & Layout Module</h4>
+			    </div>
+			    <textarea id=css name=css>
+
+p{
+color: #ff3300;
+font-size: 16px;
+}
+
+				</textarea>
+
+			    <textarea id=code name=code>
+<!doctype html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>HTML5 canvas demo</title>
+    <style id="code_styles">
+    p {font-family: monospace;}
+    {{css}}
+    </style>
+    {{ejs}}
+  </head>
+  <body>
+	This is an example of EJS (embedded javascript)
+	<p>The program says <%= hello("Attenda prego!") %>.</p>
+    <p>Canvas pane goes here:</p>
+    <canvas id=pane width=300 height=200></canvas>
+    <script>
+      var canvas = document.getElementById('pane');
+      var context = canvas.getContext('2d');
+
+      context.fillStyle = 'rgb(250,0,0)';
+      context.fillRect(10, 10, 55, 50);
+
+      context.fillStyle = 'rgba(0, 0, 250, 0.5)';
+      context.fillRect(30, 30, 55, 50);
+    </script>
+  </body>
+</html>
+			</textarea>
+			    <iframe id=preview></iframe>
+			      </section>
+
+			    <script>
+			    _.templateSettings = {
+  					interpolate: /\{\{(.+?)\}\}/g
+				};
+			      var delay;
+			      // Initialize CodeMirror editor with a nice html5 canvas demo.
+			      var editor_data = CodeMirror.fromTextArea(document.getElementById('data-js'), {
+			        mode: 'text/javascript'
+			      });
+			      editor_data.on("change", function() {
+					clearTimeout(delay);
+					delay = setTimeout(updatePreview, 300);
+				  });
+			      var editor_css = CodeMirror.fromTextArea(document.getElementById('css'), {
+			        mode: 'text/css'
+			      });
+			      editor_css.on("change", function() {
+					clearTimeout(delay);
+					delay = setTimeout(updatePreview, 300);
+				  });
+			      var mixedMode = {
+			        name: "smartymixed",
+			        scriptTypes: [{matches: /\/x-handlebars-template|\/x-mustache/i, 
+			                       mode: null},
+			                      {matches: /(text|application)\/(x-)?vb(a|script)/i,
+			                       mode: "vbscript"},]
+			      }; 
+			      var editor_ejs = CodeMirror.fromTextArea(document.getElementById('data-ejs'), {
+			        mode: 'application/x-ejs',
+			        tabMode: 'indent',
+			        lineNumbers: true,
+			        indentUnit: 4,
+			        indentWithTabs: true,
+			        enterMode: "keep",
+			        tabMode: "shift"
+			      });
+			      editor_ejs.on("change", function() {
+			        clearTimeout(delay);
+			        delay = setTimeout(updatePreview, 300);
+			      });
+
+ 
+			      var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+			        mode: 'application/x-ejs',
+			        tabMode: 'indent',
+			        lineNumbers: true,
+			        indentUnit: 4,
+			        indentWithTabs: true,
+			        enterMode: "keep",
+			        tabMode: "shift"
+			      });
+			      editor.on("change", function() {
+			        clearTimeout(delay);
+			        delay = setTimeout(updatePreview, 300);
+			      });
+			      
+			      function updatePreview() {
+			        var previewFrame = document.getElementById('preview');
+			        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+			        preview.open();
+			        var preview_css = editor_css.getValue();
+			        var preview_ejs = editor_ejs.getValue();
+			        var preview_tmpl = _.template( editor.getValue() );
+			        var preview_html = preview_tmpl({css: preview_css,ejs: preview_ejs});
+			        preview.write(preview_html);
+			        preview.close();
+			      }
+			      setTimeout(updatePreview, 300);
+			    </script>
+		 	</div>
+		</div>
+    </div>
 <% include ../layout/footer %>
